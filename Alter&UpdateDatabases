@@ -32,3 +32,25 @@ update Tabela_Aluno set	Logradouro = "Rua Miramar", Numero = "1200", Complemento
 update Tabela_Aluno set	Logradouro = "Rua João de Abreu", Numero = "650", Complemento = null, Bairro = null, Cidade = "Goiânia", Estado = "GO" where Id_Aluno = 5;
 
 alter table Tabela_Aluno drop Endereco;
+
+create table funcionario (
+	nome_func varchar(30));
+    
+insert into funcionario values ("João"), ("Maria"), ("João"), ("Tatiana"), ("Roberto"), ("Zenda"), ("Abel");
+select * from funcionario;
+
+select distinct nome_func from funcionario; 
+
+select nome_func from funcionario order by nome_func asc;
+select nome_func from funcionario order by nome_func desc;
+
+alter table funcionario add carga_horaria varchar(20);
+update funcionario set carga_horaria = "20 horas" where nome_func = "João";
+update funcionario set carga_horaria = "50 horas" where nome_func = "Maria";
+update funcionario set carga_horaria = "70 horas" where nome_func = "Tatiana";
+update funcionario set carga_horaria = "10 horas" where nome_func = "Roberto";
+update funcionario set carga_horaria = "08 horas" where nome_func = "Zenda";
+update funcionario set carga_horaria = "90 horas" where nome_func = "Abel";
+
+select nome_func from funcionario group by carga_horaria having carga_horaria > "30 Horas";
+
