@@ -1,0 +1,77 @@
+14/09/2023
+
+show databases;
+create database newDBnew;
+use newDBnew;
+
+create table meus_contatos (
+	sobrenome varchar(30),
+    primeiro_nome varchar(20),
+    email varchar(50),
+    aniversario date,
+    profissao varchar(50),
+    endereco varchar(50),
+    estado_civil varchar(20),
+    interesses varchar(100),
+    procura varchar(100)
+);
+
+insert into meus_contatos values (
+	"Mendoza", 
+    "Angelina",
+    "angelina@starbuzzcoffe.com", 
+    "1979/08/19", 
+    null, 
+    "San Francisco, CA", 
+    "Casada", 
+    "Atuar, dançar", 
+    "Novo Emprego"
+);
+insert into meus_contatos values (
+	"Soukup", 
+    "Alan", 
+    "soukup@breakneckpizza.com", 
+    "1966/07/01", 
+    "Engenheiro Aeronáutico", 
+    "San Antonio, TX", 
+    "Casado", 
+    "KGP, programação", 
+    "Nada"
+);
+insert into meus_contatos values (
+	"Hamilton", 
+    "Jamie", 
+    "dontbother@breakneckpizza.com", 
+    "1964/09/10", 
+    "Analista de Sistemas", 
+    "Sunnyvale, CA", 
+    "Solteiro", 
+    "Trilha, escrever", 
+    "Amigos, mulheres para relacionamento"
+);
+insert into meus_contatos values (
+	"Keese", 
+    "Daniel", 
+    "dreese@simuduck.com", 
+    "1980/06/13", 
+    "Web Designer", 
+    "Sunnyvale, CA", 
+    "Solteiro", 
+    "Atividades ao ar livre, ler, tocar música, viajar, cozinhar", 
+    "Amigos e mulher para namorar"
+);
+insert into meus_contatos values (
+	"Branson", 
+    "Ann", 
+    "annie@boards-r-us.com", 
+    "1962/07/01", 
+    "Engenheiro de Software", 
+    "Montain View, CA", 
+    "Solteiro", 
+    "Colecionar livros, fabricação de cerveja, eguitação", 
+    "Um novo emprego"
+);
+
+select * from meus_contatos;
+
+
