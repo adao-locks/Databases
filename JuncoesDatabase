@@ -1,0 +1,40 @@
+show databases;
+create database adaodb;
+use adaodb;
+
+create table funcionario (
+	Cod integer primary key auto_increment,
+    Nome varchar(100) not null,
+    Especialidade varchar(15)
+);
+create table dependente (
+	Cod integer primary key auto_increment,
+    Nome varchar(100) not null,
+    Cod_Func integer,
+    foreign key(Cod_Func) references funcionario(Cod)
+);
+insert into funcionario (Nome, Especialidade) values ("José", "Engenheiro");
+insert into funcionario (Nome, Especialidade) values ("João", "Mestre de Obras");
+insert into funcionario (Nome, Especialidade) values ("Maria", "Contabilista");
+insert into funcionario (Cod, Nome, Especialidade) values (66, "José", "Engenheiro");
+
+select * from funcionario;
+
+insert into dependente (Nome, Cod_Func) values ("Pedro", 1);
+insert into dependente (Nome, Cod_Func) values ("Alice", 1);
+insert into dependente (Nome, Cod_Func) values ("Luana", 3);
+
+select * from dependente;
+
+-- junção cartesiana
+
+select func.nome nome_func, dep.nome nome_dep
+from funcionario func,
+	dependente dep
+where func.cod = dep.cod_func;
+
+-- junção interna
+
+select func.nome nome_func, dep.nome nome_dep
+from funcionario func inner join
+	dependente dep on (func.cod = dep.cod_func);
