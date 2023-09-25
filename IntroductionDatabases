@@ -1,0 +1,111 @@
+create database activityDB;
+use activityDB;
+
+create table fornecedores (
+	codigo int(4) auto_increment,
+	nome varchar(30) not null,
+	email varchar(50), primary key (codigo)
+);
+
+show tables;
+desc fornecedores;
+
+insert into fornecedores(nome, email)
+values ('Adão', 'abc@gmail.com');
+SELECT * FROM fornecedores;
+
+create table funcionario (
+	CODIGO_func integer not null auto_increment,
+	NOME_FUNC varchar(20),
+	primary key(CODIGO_func)
+);
+
+show tables;
+desc funcionario;
+
+insert into funcionario(NOME_FUNC)
+values ('Eduardo');
+select * from funcionario;
+
+create table projeto (
+	CODIGO_proj integer not null auto_increment,
+	NOME_proj varchar(30), primary key(CODIGO_proj)
+);
+
+create table alocacao (
+	CODIGO_func integer not null,
+	CODIGO_proj integer not null,
+	foreign key(CODIGO_func) references
+	funcionario(CODIGO_func),
+	foreign key(CODIGO_proj) references projeto(CODIGO_proj)
+);
+
+desc alocacao;	
+
+create table banda (
+	Codigo_banda integer not null auto_increment,
+	Nome_banda varchar(20) not null, primary key(Codigo_banda)
+);
+
+insert into banda (Nome_banda)
+values ('los peoples');
+select * from banda;
+
+create table musico (
+	Codigo_musico integer not null auto_increment,
+	Codigo_bandaFK integer not null,
+	nome_musico varchar(20),
+	tempo_experiencia varchar(20),
+	primary key(Codigo_musico),
+	foreign key(Codigo_bandaFK) references banda (Codigo_banda)
+);
+
+desc banda;
+desc musico;
+
+insert into musico (Codigo_bandaFK, nome_musico, tempo_experiencia)
+values (1, 'Jorgão', '10 Anos');
+
+alter table funcionario add endereco varchar(30);
+alter table funcionario modify endereco varchar(150) not null;
+alter table funcionario change endereco endereco_completo varchar(150) not null;
+alter table funcionario drop endereco_completo; -- comentário
+desc funcionario;
+
+create table cliente (
+	Cd_cliente numeric(8) primary key,
+	Nm_cliente varchar(20),
+	cd_departamento numeric(8)
+);
+
+create table departamento (
+	Cd_departamento numeric(8) primary key,
+    Nm_departamento varchar(20)
+);
+
+alter table cliente add constraint fk_cliente
+	foreign key (cd_departamento)
+    references departamento (cd_departamento);
+
+select codigo_banda from banda where codigo_banda = 1;
+
+update musico
+set nome_musico = "Jorgin dos foguetes"
+where codigo_musico = 1;
+
+delete from banda where codigo_banda = 1;
+
+desc banda;
+select * from banda;
+
+drop table musico;
+
+create table musico (
+	codigo_musico integer not null auto_increment,
+	codigo_bandafk integer not null,
+	nome_musico varchar(20),
+	tempo_experiencia varchar(20),
+	primary key(codigo_musico),
+	foreign key(codigo_bandafk)
+	references banda (codigo_banda) on delete cascade
+);
