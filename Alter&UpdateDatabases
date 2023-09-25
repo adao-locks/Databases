@@ -1,0 +1,34 @@
+show databases;
+create database newDBnew;
+use newDBnew;
+
+create table Tabela_Aluno (
+	Id_Aluno integer auto_increment primary key,
+    Sexo char(1),
+    Idade integer(2),
+    Data_Inscricao_Curso date,
+    Telefone varchar(20),
+    Valor_Pago_Curso float(10,2),
+    Ativo_sn integer,
+    Endereco varchar(160),
+    Nm_Aluno varchar(30),
+    Cpf varchar(14),
+    Email varchar(150)
+);
+
+select * from Tabela_Aluno;
+
+insert into Tabela_Aluno values (null, "M", 55, "2018-12-01", "11 5555-2222", 645.22, 1, "Avenida Paulista, 1500, ap315 - São Paulo - SP", "José", "333.111.111-11", null);
+insert into Tabela_Aluno values (null, "F", 30, "2018-11-01", "11 3333-2222", 589.12, 1, "Rua Francisco Sá, 10 Belo Horizonte - MG", "Fernanda", "222.111.111-11", null),
+								(null, "M", 29, "2018-12-02", "11 5555-7777", 600.55, 0, "Avenida Dom Manuel, 300 - Fortaleza - CE", "José", "333.111.111-11", null),
+								(null, "F", 42, "2018-12-02", "11 7777-7777", 655.45, 1, "Rua Miramar, 1200, ap112 - Natal - RN", "Maria", "444.111.111-11", null),
+								(null, "M", 37, "2018-11-15", "11 1111-7777", 612.99, 1, "Rua João de Abreu, 650 - Goiânia - GO", "Marcelo", "555.111.111-11", null);
+                                
+alter table Tabela_Aluno add Logradouro varchar(100), add Numero varchar(10), add Complemento varchar(20), add Bairro varchar(100), add Cidade varchar(50), add Estado char(2);
+update Tabela_Aluno set	Logradouro = "Avenida Paulista", Numero = "1500", Complemento = "Ap315", Bairro = null, Cidade = "São Paulo", Estado = "SP" where Id_Aluno = 1;
+update Tabela_Aluno set	Logradouro = "Rua Francisco Sá", Numero = "10", Complemento = null, Bairro = null, Cidade = "Belo Horizonte", Estado = "MG" where Id_Aluno = 2;
+update Tabela_Aluno set	Logradouro = "Avenida Dom Manuel", Numero = "300", Complemento = null, Bairro = null, Cidade = "Fortaleza", Estado = "CE" where Id_Aluno = 3;
+update Tabela_Aluno set	Logradouro = "Rua Miramar", Numero = "1200", Complemento = "Ap112", Bairro = null, Cidade = "Natal", Estado = "RN" where Id_Aluno = 4;
+update Tabela_Aluno set	Logradouro = "Rua João de Abreu", Numero = "650", Complemento = null, Bairro = null, Cidade = "Goiânia", Estado = "GO" where Id_Aluno = 5;
+
+alter table Tabela_Aluno drop Endereco;
