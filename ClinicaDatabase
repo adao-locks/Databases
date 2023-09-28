@@ -1,0 +1,90 @@
+Create database clinica;
+use clinica;
+
+CREATE TABLE Ambulatorios (
+	nroa integer,
+	andar numeric(3) NOT NULL,
+	capacidade integer,    
+	PRIMARY KEY (nroa) 	
+);
+CREATE TABLE Medicos (
+		codm		      integer,
+		nome		      varchar(40) NOT NULL,
+		idade            integer    NOT NULL,
+        especialidade    char(20), 
+         CPF              numeric(11) UNIQUE, 
+         cidade           varchar(30),  
+         nroa_fk             integer,
+         PRIMARY KEY(codm),
+         FOREIGN KEY(nroa_fk) REFERENCES Ambulatorios( nroa)	
+);
+CREATE TABLE Pacientes (
+             codp integer Primary Key, 
+             nome varchar(40) NOT NULL,
+             idade integer NOT NULL,
+             cidade varchar(30), 
+             CPF numeric(11) UNIQUE, 
+             doenca varchar(40)NOT NULL);
+CREATE TABLE Funcionarios (
+             codf integer Primary Key, 
+             nome varchar(40) NOT NULL,
+             idade integer NOT NULL,
+             cidade varchar(30), 
+             salario numeric(10) ,
+             CPF numeric(11) UNIQUE
+             );
+CREATE TABLE Consultas (
+             Codm_FK integer, 
+             Codp_FK integer,
+             Dt_Consulta date,
+             Hr_Consulta time,
+             PRIMARY KEY(Codm_FK,Dt_Consulta,Hr_Consulta),
+             FOREIGN KEY(Codm_FK) REFERENCES Medicos(codm),
+             FOREIGN KEY(Codp_FK) REFERENCES Pacientes(codp)
+);
+
+    Insert into Ambulatorios values (1,1,30);
+    Insert into Ambulatorios values (2,1,50);
+    Insert into Ambulatorios values (3,2,40);
+    Insert into Ambulatorios values (4,2,25);
+    Insert into Ambulatorios values (5,2,55);
+    select * from AMBULATORIOS;
+    
+    insert into Medicos values (1,'Joao',40,'ortopedia',10000100000,'Florianópolis',1);
+    insert into Medicos values (2,'Maria',42,'traumatologia',10000110000,'Blumenau',2);
+    insert into Medicos values (3,'Pedro',51,'pediatria',11000100000,'São José',2);
+    insert into Medicos values (4,'Carlos',28,'ortopedia',11000110000,'Joinville',4);
+    insert into Medicos values (5,'Márcia',33,'neurologia',11000111000,'Biguaçu',3);
+    select * from medicos;
+    
+    insert into Pacientes values (1,'Ana',20,'Florianópolis',20000200000,'gripe');
+    insert into Pacientes values (2,'Paulo',24,'Palhoça',20000220000,'fratura');
+    insert into Pacientes values (3,'Lucia',30,'Biguaçu',22000200000,'tendinite');
+    insert into Pacientes values (4,'Carlos',28,'Joinville',11000110000,'sarampo');
+    select * from pacientes;
+  
+  insert funcionarios values (1,'Rita',32,'São José',1200,20000100000);
+  insert funcionarios values (2,'Maria',55,'Palhoça',1220,30000110000);
+  insert funcionarios values (3,'Caio',45,'Florianópolis',1100,41000100000);
+  insert funcionarios values (4,'Carlos',44,'Florianópolis',1200,51000110000);
+  insert funcionarios values (5,'Paula',33,'Florianópolis',2500,61000111000);
+  select * from funcionarios;
+
+  insert into consultas values (1,1,'2006/06/12','14:00');
+  insert into consultas values (1,4,'2006-06-13','10:00:00');
+  
+   insert into consultas values (2,1,'2006-06-13','09:00:00');
+   insert into consultas values (2,2,'2006-06-13','11:00:00');
+   insert into consultas values (2,3,'2006-06-14','14:00:00');
+   insert into consultas values (2,4,'2006-06-14','17:00:00');
+  
+   insert into consultas values (3,1,'2006-06-19','18:00:00');
+   insert into consultas values (3,3,'2006-06-12','10:00:00');
+   insert into consultas values (3,4,'2006-06-19','13:00:00');
+   
+   insert into consultas values (4,4,'2006-06-20','13:00:00');
+   insert into consultas values (4,4,'2006-06-22','19:30:00');
+   
+   select * from consultas;
+   
+   
