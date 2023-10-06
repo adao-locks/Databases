@@ -43,48 +43,148 @@ CREATE TABLE Consultas (
              FOREIGN KEY(Codp_FK) REFERENCES Pacientes(codp)
 );
 
-    Insert into Ambulatorios values (1,1,30);
-    Insert into Ambulatorios values (2,1,50);
-    Insert into Ambulatorios values (3,2,40);
-    Insert into Ambulatorios values (4,2,25);
-    Insert into Ambulatorios values (5,2,55);
-    select * from AMBULATORIOS;
-    
-    insert into Medicos values (1,'Joao',40,'ortopedia',10000100000,'Florianópolis',1);
-    insert into Medicos values (2,'Maria',42,'traumatologia',10000110000,'Blumenau',2);
-    insert into Medicos values (3,'Pedro',51,'pediatria',11000100000,'São José',2);
-    insert into Medicos values (4,'Carlos',28,'ortopedia',11000110000,'Joinville',4);
-    insert into Medicos values (5,'Márcia',33,'neurologia',11000111000,'Biguaçu',3);
-    select * from medicos;
-    
-    insert into Pacientes values (1,'Ana',20,'Florianópolis',20000200000,'gripe');
-    insert into Pacientes values (2,'Paulo',24,'Palhoça',20000220000,'fratura');
-    insert into Pacientes values (3,'Lucia',30,'Biguaçu',22000200000,'tendinite');
-    insert into Pacientes values (4,'Carlos',28,'Joinville',11000110000,'sarampo');
-    select * from pacientes;
-  
-  insert funcionarios values (1,'Rita',32,'São José',1200,20000100000);
-  insert funcionarios values (2,'Maria',55,'Palhoça',1220,30000110000);
-  insert funcionarios values (3,'Caio',45,'Florianópolis',1100,41000100000);
-  insert funcionarios values (4,'Carlos',44,'Florianópolis',1200,51000110000);
-  insert funcionarios values (5,'Paula',33,'Florianópolis',2500,61000111000);
-  select * from funcionarios;
+Insert into Ambulatorios values (1,1,30);
+Insert into Ambulatorios values (2,1,50);
+Insert into Ambulatorios values (3,2,40);
+Insert into Ambulatorios values (4,2,25);
+Insert into Ambulatorios values (5,2,55);
+select * from AMBULATORIOS;
 
-  insert into consultas values (1,1,'2006/06/12','14:00');
-  insert into consultas values (1,4,'2006-06-13','10:00:00');
-  
-   insert into consultas values (2,1,'2006-06-13','09:00:00');
-   insert into consultas values (2,2,'2006-06-13','11:00:00');
-   insert into consultas values (2,3,'2006-06-14','14:00:00');
-   insert into consultas values (2,4,'2006-06-14','17:00:00');
-  
-   insert into consultas values (3,1,'2006-06-19','18:00:00');
-   insert into consultas values (3,3,'2006-06-12','10:00:00');
-   insert into consultas values (3,4,'2006-06-19','13:00:00');
-   
-   insert into consultas values (4,4,'2006-06-20','13:00:00');
-   insert into consultas values (4,4,'2006-06-22','19:30:00');
-   
-   select * from consultas;
-   
-   
+insert into Medicos values (1,'Joao',40,'ortopedia',10000100000,'Florianópolis',1);
+insert into Medicos values (2,'Maria',42,'traumatologia',10000110000,'Blumenau',2);
+insert into Medicos values (3,'Pedro',51,'pediatria',11000100000,'São José',2);
+insert into Medicos values (4,'Carlos',28,'ortopedia',11000110000,'Joinville',4);
+insert into Medicos values (5,'Márcia',33,'neurologia',11000111000,'Biguaçu',3);
+select * from medicos;
+
+insert into Pacientes values (1,'Ana',20,'Florianópolis',20000200000,'gripe');
+insert into Pacientes values (2,'Paulo',24,'Palhoça',20000220000,'fratura');
+insert into Pacientes values (3,'Lucia',30,'Biguaçu',22000200000,'tendinite');
+insert into Pacientes values (4,'Carlos',28,'Joinville',11000110000,'sarampo');
+select * from pacientes;
+
+insert funcionarios values (1,'Rita',32,'São José',1200,20000100000);
+insert funcionarios values (2,'Maria',55,'Palhoça',1220,30000110000);
+insert funcionarios values (3,'Caio',45,'Florianópolis',1100,41000100000);
+insert funcionarios values (4,'Carlos',44,'Florianópolis',1200,51000110000);
+insert funcionarios values (5,'Paula',33,'Florianópolis',2500,61000111000);
+select * from funcionarios;
+
+insert into consultas values (1,1,'2006/06/12','14:00');
+insert into consultas values (1,4,'2006-06-13','10:00:00');
+
+insert into consultas values (2,1,'2006-06-13','09:00:00');
+insert into consultas values (2,2,'2006-06-13','11:00:00');
+insert into consultas values (2,3,'2006-06-14','14:00:00');
+insert into consultas values (2,4,'2006-06-14','17:00:00');
+
+insert into consultas values (3,1,'2006-06-19','18:00:00');
+insert into consultas values (3,3,'2006-06-12','10:00:00');
+insert into consultas values (3,4,'2006-06-19','13:00:00');
+
+insert into consultas values (4,4,'2006-06-20','13:00:00');
+insert into consultas values (4,4,'2006-06-22','19:30:00');
+
+select * from consultas;
+
+update pacientes set cidade = 'Ilhota' where codp = 2;
+
+select * from pacientes;
+
+update consultas set Dt_Consulta = '2006-07-04', Hr_Consulta = '12:00:00' where codm_fk = 1 and codp_fk = 4;
+
+update pacientes set doenca = 'Cancer' where codp = 1;
+update consultas set Hr_Consulta = '14:30:00' where codm_fk = 3 and codp_fk = 4;
+delete from funcionarios where codf = 4;
+
+select * from consultas;
+select * from consultas where hr_consulta > '19:00:00';
+delete from consultas where hr_consulta > '19:00:00';
+
+select * from pacientes where doenca = 'Cancer' or idade < 10;
+delete from consultas where codp_fk = 1;
+delete from pacientes where doenca = 'Cancer' or idade < 10;
+
+delete from medicos where cidade in ('Biguaçu','Palhoça');
+select * from medicos;
+
+select distinct especialidade from medicos;
+select nroa, capacidade/5 as grupos5 from Ambulatorios;
+select CPF, salario - (salario * 0.1) as liquido from funcionarios;
+
+select count(*) as TotalOrtopedistas from medicos where especialidade = 'ortopedia';
+select count(nroa_fk) as Total from medicos;
+select sum(capacidade) as TotalAndar1 from Ambulatorios where andar = 1;
+select avg(capacidade) as TotalAndar1 from Ambulatorios where andar = 1;
+select min(capacidade) as TotalAndar1 from Ambulatorios where andar = 1;
+select max(capacidade) as TotalAndar1 from Ambulatorios where andar = 1;
+select avg(idade) as MediaPacFpolis from Pacientes where cidade = 'Biguaçu';
+select min(salario) as mínimo, max(salario) as máximo from funcionarios where idade > 40;
+select count(distinct especialidade), count(*) from medicos;
+select avg(distinct salario), avg(salario) from funcionarios;
+select andar, COUNT(andar) from ambulatorios;
+
+select andar, sum(capacidade) from ambulatorios group by andar;
+
+select CPF, nome from medicos where nome like 'M%';
+
+select nome from medicos where codm in (select codm_fk from consultas where dt_consulta = '2006-06-13');
+select nome from medicos, consultas where codm = codm_fk and dt_consulta = '2006-06-13';
+select cpf, nome from funcionarios where cpf not in (select cpf from pacientes);
+select cpf from medicos where cpf in (select cpf from pacientes);
+
+select especialidade as 'Campo Original ',
+	upper(especialidade) as 'Maiúsculo - Upper',
+    lower(especialidade) as 'Minúsculo - Lower',
+    length(especialidade) as 'Qtd Caracteres - Length',
+    ascii(especialidade) as 'ASCII - Valor ASCII do 1º caracter à esquerda',
+    ascii(upper(especialidade)) as 'Upper_Case',
+    ascii(lower(especialidade)) as 'Lower_Case'
+from medicos;
+
+/*	case
+		when condition1 then result1
+		when condition2 then result2
+		when conditionN then resultN
+		else result
+	end; */
+    
+select nome, idade, case
+	when idade <= 30 then '1ª faixa'
+    when idade <= 40 then '2ª faixa'
+    when idade <= 50 then '3ª faixa'
+    else 'Não classificado'
+end as 'Cassificação' from medicos order by idade;
+
+select * from medicos;
+select * from ambulatorios;
+select * from funcionarios;
+
+/*1#14 - Buscar o nome e o CPF dos médicos com menos de 40 anos ou com especialidade diferente de traumatologia */
+select * from medicos order by idade;
+/*2#14 - Buscar todos os dados das consultas marcadas no período da tarde após o dia 19/06/2006 */
+select * from consultas where dt_consulta > '2006-06-19' and hr_consulta >= '12:00:00';
+/*3#14 - Buscar o nome e a idade dos pacientes que não residem em Florianópolis */
+select nome, idade from pacientes where cidade != 'Florianópolis';
+/*4#14 - Buscar a hora das consultas marcadas antes do dia 14/06/2006 e depois do dia 20/06/2006 */
+select hr_consulta from consultas where dt_consulta >= '2006-06-14' and dt_consulta <= '2006-06-20';
+/*5#14 - Buscar o nome e a idade (em meses) dos pacientes */
+select nome, (idade * 12) as 'idade em meses' from pacientes;
+/*6#14 - Em quais cidades residem os funcionários? */
+select nome, cidade from funcionarios;
+/*7#14 - Qual o menor e o maior salário dos funcionários da Florianópolis? */
+select min(salario) as mínimo, max(salario) as máximo from funcionarios;
+/*8#14 - Qual o horário da última consulta marcada para o dia 13/06/2006? */
+select max(dt_consulta) from consultas;
+/*9#14 - Qual a média de idade dos médicos e o total de ambulatórios atendidos por eles? */
+select avg(idade), max(nroa) from medicos, ambulatorios;
+/*10#14 - Buscar o código, o nome e o salário líquido dos funcionários. O salário líquido é obtido pela diferença entre o salário cadastrado menos 20% deste mesmo salário  */
+select codf, nome, (salario * 0.8) as 'salario liquido' from funcionarios;
+/*11#14 - Buscar o nome dos funcionários que terminam com a letra “a” */
+select nome from funcionarios where nome like '%a';
+/*12#14 - Buscar o nome e CPF dos funcionários que não possuam a seqüência “00000” em seus CPFs */
+select nome, cpf from funcionarios where cpf not like "%00000%";
+/*13#14 - Buscar o nome e a especialidade dos médicos cuja segunda e a última letra de seus nomes seja a letra “o” */
+select nome, especialidade from medicos where nome like '_o%' and nome like '%o';
+/*14#14 - Buscar os códigos e nomes dos pacientes com mais de 25 anos que estão com tendinite, fratura, gripe e sarampo */
+select codp, nome from pacientes where idade > 25 and doenca = 'tendinite' or doenca = 'fratura' or doenca = 'gripe' or doenca = 'sarampo';
